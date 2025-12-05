@@ -5,7 +5,6 @@ import { useState } from "react";
 
 const ScratchOff = ({ name }: { name: string }) => {
   const [isRevealed, setIsRevealed] = useState(false);
-
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-[linear-gradient(45deg,_#6BDEA6,_#38334F)]">
       {/* <img
