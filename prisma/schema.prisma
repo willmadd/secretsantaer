@@ -1,0 +1,24 @@
+generator client {
+  provider = "prisma-client"
+  // generate client into ./generated/prisma (project root)
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  // no url here in Prisma 7
+}
+
+model recipients {
+  id       Int    @id @default(autoincrement())
+  name     String
+  hash     String @unique
+  password String
+
+  // Self-relation fields
+  giver   recipients? @relation("GiftRelation", fields: [giverId], references: [id])
+  giverId Int?        @unique
+
+  // Anyone who this person is giving to
+  receiver recipients? @relation("GiftRelation")
+}
